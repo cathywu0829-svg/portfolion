@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cathy Wu 吳佩靜 | 個人精選</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display (高雅襯線) & Noto Sans TC (中文黑體) & Cormorant Garamond -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        greige: {
+                            50: '#F4F3EF',   /* 超淺灰泥色 */
+                            100: '#EAE9E5',  /* 灰泥中色 */
+                            200: '#E2E1DD',  /* 經典灰泥底色 (參考223.jpg) */
+                            300: '#D5D3CE',
+                            400: '#A4A29E',
+                        },
+                        charcoal: {
+                            800: '#2A2A28',  /* 柔軟碳黑 */
+                            900: '#1C1C1B',  /* 深色文字 */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E2E1DD;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .text-serif {
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+        }
+        /* 滾動平滑 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="text-charcoal-800 antialiased min-h-screen flex flex-col justify-between selection:bg-white selection:text-charcoal-900">
+
+    <!-- 導覽列 (頂部極簡高規設計) -->
+    <header class="py-8 px-6 md:px-12 max-w-7xl mx-auto w-full flex justify-between items-center border-b border-greige-300">
+        <div class="text-2xl font-bold tracking-widest text-serif text-charcoal-900">C.</div>
+        
+        <!-- 四瓣格狀點裝飾 (呼應設計圖中的 :: 符號) -->
+        <div class="hidden md:flex space-x-1">
+            <span class="w-1.5 h-1.5 bg-charcoal-900 rounded-full"></span>
+            <span class="w-1.5 h-1.5 bg-charcoal-900 rounded-full"></span>
+        </div>
+
+        <nav class="space-x-8 text-xs tracking-[0.2em] uppercase font-light text-charcoal-800">
+            <a href="#about" class="hover:text-black transition-colors duration-300">Profile / 關於我</a>
+            <a href="#skills" class="hover:text-black transition-colors duration-300">Expertise / 技能</a>
+            <a href="#projects" class="hover:text-black transition-colors duration-300">Works / 作品</a>
+        </nav>
+        
+        <a href="#contact" class="hidden md:inline-block text-xs tracking-[0.15em] uppercase font-medium border-b border-charcoal-900 pb-1 hover:text-stone-500 hover:border-stone-500 transition-all duration-300">
+            Contact us.
+        </a>
+    </header>
+
+    <!-- Hero 區塊 (經典不對稱版面) -->
+    <main class="max-w-7xl mx-auto w-full px-6 md:px-12 py-12 lg:py-20">
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-stretch">
+            
+            <!-- 左側文字區 (佔 5 格) -->
+            <div class="lg:col-span-5 flex flex-col justify-between py-4">
+                <div>
+                    <span class="text-xs tracking-[0.3em] text-greige-400 font-medium uppercase block mb-4">Interiors & Administration</span>
+                    <h1 class="text-5xl lg:text-7xl font-light text-charcoal-900 leading-[1.15] text-serif mb-8">
+                        CATHY<br>
+                        APARTMENT
+                    </h1>
+                    <p class="text-stone-600 font-light text-sm leading-relaxed max-w-sm mb-12">
+                        結合室內與廣告設計美學，提供極致精準的施工平立面繪圖，以及一絲不苟的工程行政、內帳財務整合支援。
+                    </p>
+                </div>
+
+                <!-- 探索箭頭 (參考223.jpg大箭頭) -->
+                <div class="group py-4">
+                    <a href="#projects" class="inline-flex items-center space-x-6 text-stone-400 group-hover:text-charcoal-900 transition-colors duration-300">
+                        <span class="text-2xl text-serif italic font-light tracking-widest text-charcoal-900 group-hover:underline">DISCOVER</span>
+                        <!-- 長箭頭 SVG -->
+                        <svg class="w-20 h-6 transform group-hover:translate-x-3 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- 左下角信箱 -->
+                <div class="mt-8 lg:mt-16 text-xs tracking-wider text-stone-500 font-light">
+                    <a href="mailto:aa2860@yahoo.com.tw" class="hover:text-charcoal-900 transition-colors">aa2860@yahoo.com.tw</a>
+                </div>
+            </div>
+
+            <!-- 右側大圖與重疊卡片區 (佔 7 格) -->
+            <div class="lg:col-span-7 relative flex flex-col justify-center">
+                
+                <!-- 大主圖 (參考223.jpg的乾淨室內灰牆) -->
+                <div class="relative aspect-[4/3] w-full overflow-hidden bg-stone-300 rounded-sm shadow-md">
+                    <!-- Unsplash 質感極簡空間大圖 -->
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" 
+                         alt="極簡室內空間" 
+                         class="w-full h-full object-cover grayscale-[10%] brightness-95">
+                    
+                    <!-- 圓形旋轉文字章 (EVERYDAY EVERYWHERE) -->
+                    <div class="absolute top-6 right-8 w-24 h-24 hidden md:block select-none pointer-events-none opacity-80">
+                        <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_25s_linear_infinite]">
+                            <path id="circlePath" fill="none" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"></path>
+                            <text class="text-[7.5px] tracking-[0.22em] fill-charcoal-900 font-light uppercase">
+                                <textPath href="#circlePath">ESTABLISHED 1979 • CREATIVE & DRAFTING • </textPath>
+                            </text>
+                        </svg>
+                    </div>
+
+                    <!-- 圓形懸浮控制鈕裝飾 (呼應設計圖) -->
+                    <div class="absolute bottom-8 left-8 flex space-x-3 hidden md:flex">
+                        <button class="w-10 h-10 rounded-full border border-white bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+                            <span class="text-xs">←</span>
+                        </button>
+                        <button class="w-10 h-10 rounded-full border border-white bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
+                            <span class="text-xs">→</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 浮動重疊卡片 (參考223.jpg右側白色卡片) -->
+                <div class="mt-6 md:mt-0 md:absolute md:right-8 md:-bottom-12 bg-white p-6 md:p-8 max-w-sm rounded-sm shadow-xl border border-greige-100 z-20">
+                    <span class="text-[10px] tracking-[0.3em] text-greige-400 font-bold uppercase block mb-2">Featured Project</span>
+                    <h3 class="text-lg font-light text-charcoal-900 text-serif tracking-wide mb-3">
+                        精選空間製圖 / DRAFTING
+                    </h3>
+                    <p class="text-xs text-stone-500 font-light leading-relaxed mb-6">
+                        曾主導上群水藝與泓洋室內裝修多項大型專案，提供兼具美感與實用邏輯之平立面結構剖析。
+                    </p>
+                    <a href="#projects" class="inline-flex items-center space-x-3 text-xs tracking-widest text-charcoal-900 hover:text-stone-500 transition-colors">
+                        <span class="border-b border-charcoal-900 pb-0.5">READ MORE</span>
+                        <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 關於我 區塊 (極簡畫廊風格) -->
+    <section id="about" class="py-24 bg-white border-y border-greige-300">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-12 gap-12 items-start">
+                <div class="md:col-span-4">
+                    <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">01 / PROFILE</span>
+                    <h2 class="text-4xl font-light text-serif text-charcoal-900">吳佩靜 Cathy Wu</h2>
+                    <div class="w-20 h-[1px] bg-charcoal-800 mt-6"></div>
+                    
+                    <!-- 履歷細節側欄 -->
+                    <div class="mt-8 space-y-2 text-xs text-stone-500 font-light">
+                        <p>Education: 台南女子技術學院 / 室內設計</p>
+                        <p>Foundation: 育達商職 / 廣告設計</p>
+                        <p>Location: 中壢, 台灣 (Zhongli, TW)</p>
+                    </div>
+                </div>
+                <div class="md:col-span-8 text-stone-600 space-y-6 font-light leading-relaxed text-sm md:pl-8">
+                    <p class="text-lg text-charcoal-900 leading-relaxed font-light">
+                        「每一個完美的空間背後，都有著一疊無比精確的圖面，與有條不紊的帳目支持。」
+                    </p>
+                    <p>
+                        我自育達商職廣告設計科奠定美學感知，隨後深造於台南女子技術學院（現台南應用科技大學）室內設計系。美學訓練與空間邏輯的雙重背景，使我在面對繁瑣的施工圖面時，能同時兼顧美感直覺與結構準確。
+                    </p>
+                    <p>
+                        在<strong>上群水藝設計</strong>與<strong>泓洋室內裝修</strong>服務期間，我身兼繪圖設計助理、行政及會計出納。不僅能流暢與設計師協作產出施工圖，更獨自管理公司的資金調配、內帳處理與薪資結算。我是設計師最堅韌的後盾，也是專案推進不可或缺的行政核心。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能領域 區塊 -->
+    <section id="skills" class="py-24 bg-greige-50">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">02 / EXPERTISE</span>
+                <h2 class="text-4xl font-light text-serif text-charcoal-900">Core Expertise</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 技能卡片 1 -->
+                <div class="bg-white p-10 border border-greige-200 hover:border-charcoal-800 transition-all duration-500">
+                    <span class="text-3xl text-serif italic text-greige-400 block mb-6">I.</span>
+                    <h3 class="text-xl font-medium text-charcoal-900 mb-4 text-serif">CAD 圖面繪製</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        熟練繪製住宅、商業空間與水藝景觀的平面圖、立面配置、以及大樣剖面圖。將複雜施工細節轉化為高可讀性的施工圖紙。
+                    </p>
+                </div>
+
+                <!-- 技能卡片 2 -->
+                <div class="bg-white p-10 border border-greige-200 hover:border-charcoal-800 transition-all duration-500">
+                    <span class="text-3xl text-serif italic text-greige-400 block mb-6">II.</span>
+                    <h3 class="text-xl font-medium text-charcoal-900 mb-4 text-serif">行政後勤與協調</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        掌控案件流程進度、檔案歸檔管理。具備跨部門高效協作能力，能擔任設計團隊、工班與客戶之間最暢通的溝通橋樑。
+                    </p>
+                </div>
+
+                <!-- 技能卡片 3 -->
+                <div class="bg-white p-10 border border-greige-200 hover:border-charcoal-800 transition-all duration-500">
+                    <span class="text-3xl text-serif italic text-greige-400 block mb-6">III.</span>
+                    <h3 class="text-xl font-medium text-charcoal-900 mb-4 text-serif">內帳會計與出納</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        專案應收應付款項沖銷、日常內帳報表製作、勞健保申報與薪資結算。以嚴謹的工作態度，確保公司後勤資金運作清晰透明。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示區 (精緻畫廊卡片，重疊留白排版) -->
+    <section id="projects" class="py-24 bg-white border-t border-greige-300">
+        <div class="max-w-6xl mx-auto px-6 md:px-12">
+            
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 border-b border-greige-200 pb-8">
+                <div>
+                    <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">03 / PORTFOLIO</span>
+                    <h2 class="text-4xl font-light text-serif text-charcoal-900">Selected Works</h2>
+                </div>
+                <p class="text-xs text-stone-400 tracking-wider mt-4 md:mt-0">DRAFTING AND ARTWORK SPACE</p>
+            </div>
+
+            <!-- 格線卡片 1 -->
+            <div class="grid md:grid-cols-12 gap-8 items-center mb-24">
+                <div class="md:col-span-7 bg-greige-50 p-4 rounded-sm border border-greige-100">
+                    <!-- 作品圖片1 -->
+                    <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80" 
+                             alt="空間製圖" 
+                             class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-5 md:pl-8 space-y-4">
+                    <span class="text-[10px] tracking-[0.3em] text-greige-400 font-bold uppercase">01 / Residential Blueprint</span>
+                    <h3 class="text-2xl font-light text-charcoal-900 text-serif">住宅空間平立面系統圖</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        完整的現代家居平面、天花、燈具配置與立面大樣剖面。追求每一條墨線與尺寸標註的絕對合理與施工便利度。
+                    </p>
+                    <div class="pt-4">
+                        <span class="text-xs text-stone-400 italic">AutoCAD / 空間配置 / 人體工學規畫</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 格線卡片 2 -->
+            <div class="grid md:grid-cols-12 gap-8 items-center mb-24 md:flex-row-reverse">
+                <!-- 移動端順序調整：讓圖片始終在上方 -->
+                <div class="md:col-span-7 md:order-2 bg-greige-50 p-4 rounded-sm border border-greige-100">
+                    <!-- 作品圖片2 -->
+                    <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80" 
+                             alt="水藝景觀" 
+                             class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-5 md:order-1 md:pr-8 space-y-4">
+                    <span class="text-[10px] tracking-[0.3em] text-greige-400 font-bold uppercase">02 / Water Scape Drafting</span>
+                    <h3 class="text-2xl font-light text-charcoal-900 text-serif">水藝景觀設計工程配合案</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        配合水藝景觀機具、過濾系統管路與池體鋼筋混凝土立面大樣圖。整合機電設備、硬體結構，給予工地精確可靠的圖說支持。
+                    </p>
+                    <div class="pt-4">
+                        <span class="text-xs text-stone-400 italic">景觀工程圖學 / 設備整合 / 細部設計</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 格線卡片 3 -->
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+                <div class="md:col-span-7 bg-greige-50 p-4 rounded-sm border border-greige-100">
+                    <!-- 作品圖片3 -->
+                    <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" 
+                             alt="財務行政管理" 
+                             class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
+                    </div>
+                </div>
+                <div class="md:col-span-5 md:pl-8 space-y-4">
+                    <span class="text-[10px] tracking-[0.3em] text-greige-400 font-bold uppercase">03 / Financial & Admin Support</span>
+                    <h3 class="text-2xl font-light text-charcoal-900 text-serif">工程內帳與決算分析報表</h3>
+                    <p class="text-xs text-stone-500 leading-relaxed font-light">
+                        基於廣告設計背景的極高審美眼光，重新設計與排版極簡、專業、清晰易懂的財務報表與工程決算書。兼具數據實用度與提案視覺高級感。
+                    </p>
+                    <div class="pt-4">
+                        <span class="text-xs text-stone-400 italic">MS Office / 工程估算書 / 內帳分析報表</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 聯絡我們 (高質感極簡表單) -->
+    <section id="contact" class="py-24 bg-greige-200">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">04 / CONNECT</span>
+                <h2 class="text-4xl font-light text-serif text-charcoal-900">Start a Conversation</h2>
+                <div class="w-16 h-[1px] bg-charcoal-800 mx-auto mt-6"></div>
+            </div>
+
+            <div class="bg-white p-8 md:p-16 shadow-xl rounded-sm">
+                <div class="grid md:grid-cols-12 gap-12">
+                    
+                    <!-- 左方資訊 -->
+                    <div class="md:col-span-5 space-y-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-lg text-serif font-semibold text-charcoal-900 mb-4">Cathy Wu 吳佩靜</h3>
+                            <p class="text-xs text-stone-400 leading-relaxed font-light">
+                                無論是專案圖面外包配合、正職設計助理空缺，抑或是需要一位全方位的行政財務助手，我都期待與您的交談。
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 pt-6 border-t border-greige-200">
+                            <!-- 電話 -->
+                            <div class="flex items-center text-xs text-stone-600">
+                                <span class="w-20 font-bold tracking-wider">PHONE</span>
+                                <a href="tel:0983490526" class="hover:text-charcoal-900">0983-490526</a>
+                            </div>
+                            <!-- 信箱 -->
+                            <div class="flex items-center text-xs text-stone-600">
+                                <span class="w-20 font-bold tracking-wider">EMAIL</span>
+                                <a href="mailto:aa2860@yahoo.com.tw" class="hover:text-charcoal-900">aa2860@yahoo.com.tw</a>
+                            </div>
+                            <!-- 地址 -->
+                            <div class="flex items-start text-xs text-stone-600">
+                                <span class="w-20 font-bold tracking-wider">ADDRESS</span>
+                                <span class="flex-1">桃園市中壢區龍岡路三段</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右方極簡欄位 (無邊框底線風格) -->
+                    <form onsubmit="event.preventDefault();" class="md:col-span-7 space-y-6">
+                        <div class="relative">
+                            <input type="text" id="name" placeholder=" " class="peer w-full bg-transparent border-b border-greige-300 py-2 text-sm text-charcoal-900 placeholder-transparent focus:outline-none focus:border-charcoal-900 transition-colors">
+                            <label for="name" class="absolute left-0 -top-3.5 text-xs text-stone-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-charcoal-900">您的姓名 / Name</label>
+                        </div>
+                        <div class="relative">
+                            <input type="email" id="email" placeholder=" " class="peer w-full bg-transparent border-b border-greige-300 py-2 text-sm text-charcoal-900 placeholder-transparent focus:outline-none focus:border-charcoal-900 transition-colors">
+                            <label for="email" class="absolute left-0 -top-3.5 text-xs text-stone-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-charcoal-900">電子信箱 / Email</label>
+                        </div>
+                        <div class="relative">
+                            <textarea id="message" rows="3" placeholder=" " class="peer w-full bg-transparent border-b border-greige-300 py-2 text-sm text-charcoal-900 placeholder-transparent focus:outline-none focus:border-charcoal-900 transition-colors"></textarea>
+                            <label for="message" class="absolute left-0 -top-3.5 text-xs text-stone-400 transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-charcoal-900">您的訊息 / Message</label>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-charcoal-900 hover:bg-stone-700 text-white text-xs tracking-widest uppercase font-medium transition-colors" onclick="alert('謝謝您的聯繫！此為靜態網頁展示，後續可為您串接信件服務。')">
+                            SEND MESSAGE ──→
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-charcoal-900 text-greige-100 py-16 px-6 text-center">
+        <div class="max-w-6xl mx-auto space-y-6">
+            <p class="text-xl font-serif text-white tracking-widest">CATHY WU</p>
+            <p class="text-[11px] text-stone-400 font-light leading-relaxed max-w-md mx-auto">
+                台南女子技術學院室內設計系 / 育達商職廣告設計科畢業<br>
+                室內製圖助理 • 工程行政管理 • 內帳出納整合
+            </p>
+            <div class="w-12 h-[1px] bg-stone-700 mx-auto my-6"></div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">
+                &copy; 2026 Cathy Wu. ARCHITECTURAL MINIMALIST PORTFOLIO.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
