@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>專業資格與證照 | Cathy Wu Portfolio</title>
+    <!-- 載入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 載入 Google 字型：Playfair Display (襯線) 與 Plus Jakarta Sans (無襯線) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oat: {
+                            DEFAULT: '#F8F6F2', // 溫暖燕麥白 (主背景)
+                            dark: '#EFECE6',    // 稍深燕麥白 (卡片/區塊)
+                        },
+                        charcoal: {
+                            DEFAULT: '#0F172A', // 深邃藍灰 (主文字)
+                            light: '#334155',   // 輔助文字
+                        },
+                        clay: {
+                            DEFAULT: '#8C857B', // 灰褐色 (中性輔助/細線)
+                            light: '#A8A297',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', '"Noto Serif TC"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+            background-color: #F8F6F2;
+            color: #0F172A;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection {
+            background-color: #8C857B;
+            color: #F8F6F2;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <header class="border-b border-[#8C857B]/20 py-6 px-6 md:px-12 lg:px-24 flex justify-between items-center bg-oat/80 backdrop-blur-md sticky top-0 z-40">
+        <a href="#" class="font-serif text-lg md:text-xl tracking-widest font-semibold text-charcoal hover:opacity-70 transition-opacity">
+            CATHY WU
+        </a>
+        <nav class="hidden md:flex space-x-10 text-xs tracking-widest text-clay font-medium uppercase">
+            <a href="#" class="hover:text-charcoal transition-colors">01 / Profile</a>
+            <a href="#" class="hover:text-charcoal transition-colors">02 / Portfolio</a>
+            <a href="#" class="text-charcoal font-bold border-b border-charcoal pb-1">03 / Credentials</a>
+            <a href="#" class="hover:text-charcoal transition-colors">04 / Contact</a>
+        </nav>
+        <button id="mobileMenuBtn" class="md:hidden text-charcoal hover:opacity-70 transition-opacity focus:outline-none" aria-label="Toggle Menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 8h16M4 16h16"/></svg>
+        </button>
+    </header>
+
+    <!-- 行動端導覽選單 (預設隱藏) -->
+    <div id="mobileMenu" class="hidden fixed inset-x-0 top-[73px] bg-oat border-b border-[#8C857B]/20 z-30 py-6 px-8 flex flex-col space-y-4 text-xs tracking-widest text-clay font-medium uppercase shadow-lg transition-all">
+        <a href="#" class="hover:text-charcoal transition-colors py-2">01 / Profile</a>
+        <a href="#" class="hover:text-charcoal transition-colors py-2">02 / Portfolio</a>
+        <a href="#" class="text-charcoal font-bold py-2">03 / Credentials</a>
+        <a href="#" class="hover:text-charcoal transition-colors py-2">04 / Contact</a>
+    </div>
+
+    <main class="flex-grow py-12 md:py-20 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto w-full">
+        <div class="mb-16 md:mb-24">
+            <span class="font-serif text-sm md:text-base text-clay block mb-3 italic tracking-wider">03 / Professional Licenses & Certificates</span>
+            <div class="h-[1px] w-12 bg-clay mb-6"></div>
+            <h1 class="font-serif text-4xl md:text-6xl font-light tracking-wide text-charcoal leading-tight">
+                專業資格與證照
+            </h1>
+            <p class="text-clay text-sm md:text-base mt-6 max-w-2xl leading-relaxed">
+                結合室內設計、工程實務與財務管理之多元專業認證。以嚴謹的工作態度與持之以恆的專業進修，為每項設計工程提供最堅實可靠的技術與行政後盾。
+            </p>
+        </div>
+
+        <!-- 領域篩選按鈕 -->
+        <div class="flex flex-wrap gap-3 md:gap-4 mb-12 border-b border-[#8C857B]/20 pb-6 text-xs tracking-widest uppercase">
+            <button onclick="filterCards('all')" class="filter-btn active-filter px-4 py-2 border border-charcoal bg-charcoal text-oat rounded-full transition-all duration-300">
+                全部認證 (5)
+            </button>
+            <button onclick="filterCards('design')" class="filter-btn px-4 py-2 border border-[#8C857B]/30 hover:border-charcoal rounded-full transition-all duration-300">
+                室內設計 (2)
+            </button>
+            <button onclick="filterCards('engineering')" class="filter-btn px-4 py-2 border border-[#8C857B]/30 hover:border-charcoal rounded-full transition-all duration-300">
+                工程管理 (2)
+            </button>
+            <button onclick="filterCards('finance')" class="filter-btn px-4 py-2 border border-[#8C857B]/30 hover:border-charcoal rounded-full transition-all duration-300">
+                財務會計 (1)
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            
+            <!-- 證照 1：AutoCAD 專業級國際認證 -->
+            <div class="cert-card bg-[#F4F1EA] border border-[#8C857B]/10 rounded-lg overflow-hidden group hover:shadow-xl hover:shadow-[#8C857B]/5 transition-all duration-500 flex flex-col h-full" data-category="design">
+                <div class="relative overflow-hidden bg-stone-200 aspect-[4/3] flex items-center justify-center">
+                    <!-- 使用指定的 GitHub 圖片 (帶有自動載入與防錯 fallback 機制) -->
+                    <img src="https://raw.githubusercontent.com/cathywu0829-svg/1150601-test001/main/001.jpg" 
+                         alt="AutoCAD 專業級國際認證" 
+                         class="cert-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    <button onclick="openModal('AutoCAD 專業級國際認證', this.previousElementSibling.src)" class="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-oat text-sm tracking-widest uppercase">
+                        <span class="border border-oat/50 px-4 py-2 rounded backdrop-blur-sm">檢視憑證 ──→</span>
+                    </button>
+                </div>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-[10px] tracking-widest text-clay uppercase font-bold">Autodesk</span>
+                            <span class="text-xs text-clay">2024 / 05 取得</span>
+                        </div>
+                        <h3 class="font-serif text-xl text-charcoal font-semibold mb-3 group-hover:text-clay transition-colors duration-300">
+                            AutoCAD 專業級國際認證
+                        </h3>
+                        <p class="text-xs text-charcoal/70 leading-relaxed font-light mb-6">
+                            具備 2D 施工圖、剖面圖與立面圖的高效精準繪製能力，符合室內設計業界 CAD 工程圖紙規範。
+                        </p>
+                    </div>
+                    <div class="border-t border-[#8C857B]/20 pt-4 flex justify-between items-center text-xs text-clay">
+                        <span>認證字號：ACT-98310</span>
+                        <span class="italic text-[10px]">DESIGN</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 證照 2：建築物室內設計專業技術人員 -->
+            <div class="cert-card bg-[#F4F1EA] border border-[#8C857B]/10 rounded-lg overflow-hidden group hover:shadow-xl hover:shadow-[#8C857B]/5 transition-all duration-500 flex flex-col h-full" data-category="design">
+                <div class="relative overflow-hidden bg-stone-200 aspect-[4/3] flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/cathywu0829-svg/1150601-test001/main/001.jpg" 
+                         alt="建築物室內設計登記證" 
+                         class="cert-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    <button onclick="openModal('建築物室內設計專業技術人員登記證', this.previousElementSibling.src)" class="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-oat text-sm tracking-widest uppercase">
+                        <span class="border border-oat/50 px-4 py-2 rounded backdrop-blur-sm">檢視憑證 ──→</span>
+                    </button>
+                </div>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-[10px] tracking-widest text-clay uppercase font-bold">內政部國土管理署</span>
+                            <span class="text-xs text-clay">2025 / 11 取得</span>
+                        </div>
+                        <h3 class="font-serif text-xl text-charcoal font-semibold mb-3 group-hover:text-clay transition-colors duration-300">
+                            建築物室內設計登記證
+                        </h3>
+                        <p class="text-xs text-charcoal/70 leading-relaxed font-light mb-6">
+                            國家級乙級技術士認證，合規辦理室內裝修規劃設計與請照申報業務。
+                        </p>
+                    </div>
+                    <div class="border-t border-[#8C857B]/20 pt-4 flex justify-between items-center text-xs text-clay">
+                        <span>認證字號：125-001092</span>
+                        <span class="italic text-[10px]">DESIGN</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 證照 3：營造業甲種安全衛生業務主管 -->
+            <div class="cert-card bg-[#F4F1EA] border border-[#8C857B]/10 rounded-lg overflow-hidden group hover:shadow-xl hover:shadow-[#8C857B]/5 transition-all duration-500 flex flex-col h-full" data-category="engineering">
+                <div class="relative overflow-hidden bg-stone-200 aspect-[4/3] flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/cathywu0829-svg/1150601-test001/main/001.jpg" 
+                         alt="營造甲種安衛業務主管" 
+                         class="cert-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    <button onclick="openModal('營造業甲種安全衛生業務主管', this.previousElementSibling.src)" class="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-oat text-sm tracking-widest uppercase">
+                        <span class="border border-oat/50 px-4 py-2 rounded backdrop-blur-sm">檢視憑證 ──→</span>
+                    </button>
+                </div>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-[10px] tracking-widest text-clay uppercase font-bold">勞動部職業安全衛生署</span>
+                            <span class="text-xs text-clay">2023 / 08 取得</span>
+                        </div>
+                        <h3 class="font-serif text-xl text-charcoal font-semibold mb-3 group-hover:text-clay transition-colors duration-300">
+                            營造甲種安衛業務主管
+                        </h3>
+                        <p class="text-xs text-charcoal/70 leading-relaxed font-light mb-6">
+                            確保工程現場完全符合職業安全衛生法規，有效管理工班、降低施工危害風險。
+                        </p>
+                    </div>
+                    <div class="border-t border-[#8C857B]/20 pt-4 flex justify-between items-center text-xs text-clay">
+                        <span>認證字號：OSHA-230911</span>
+                        <span class="italic text-[10px]">ENGINEERING</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 證照 4：丙級會計事務技術士 -->
+            <div class="cert-card bg-[#F4F1EA] border border-[#8C857B]/10 rounded-lg overflow-hidden group hover:shadow-xl hover:shadow-[#8C857B]/5 transition-all duration-500 flex flex-col h-full" data-category="finance">
+                <div class="relative overflow-hidden bg-stone-200 aspect-[4/3] flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/cathywu0829-svg/1150601-test001/main/001.jpg" 
+                         alt="丙級會計事務技術士" 
+                         class="cert-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    <button onclick="openModal('丙級會計事務技術士', this.previousElementSibling.src)" class="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-oat text-sm tracking-widest uppercase">
+                        <span class="border border-oat/50 px-4 py-2 rounded backdrop-blur-sm">檢視憑證 ──→</span>
+                    </button>
+                </div>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-[10px] tracking-widest text-clay uppercase font-bold">勞動部技能檢定中心</span>
+                            <span class="text-xs text-clay">2022 / 10 取得</span>
+                        </div>
+                        <h3 class="font-serif text-xl text-charcoal font-semibold mb-3 group-hover:text-clay transition-colors duration-300">
+                            丙級會計事務技術士
+                        </h3>
+                        <p class="text-xs text-charcoal/70 leading-relaxed font-light mb-6">
+                            專精工程專案內帳、財務憑證整理及稅務行政，提供嚴謹且有條理的會計行政支援。
+                        </p>
+                    </div>
+                    <div class="border-t border-[#8C857B]/20 pt-4 flex justify-between items-center text-xs text-clay">
+                        <span>認證字號：030-221084</span>
+                        <span class="italic text-[10px]">FINANCE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 證照 5：公共工程品管人員 -->
+            <div class="cert-card bg-[#F4F1EA] border border-[#8C857B]/10 rounded-lg overflow-hidden group hover:shadow-xl hover:shadow-[#8C857B]/5 transition-all duration-500 flex flex-col h-full" data-category="engineering">
+                <div class="relative overflow-hidden bg-stone-200 aspect-[4/3] flex items-center justify-center">
+                    <img src="https://raw.githubusercontent.com/cathywu0829-svg/1150601-test001/main/001.jpg" 
+                         alt="公共工程品管人員" 
+                         class="cert-img w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                         onerror="handleImageError(this)">
+                    <button onclick="openModal('公共工程品質管理人員認證', this.previousElementSibling.src)" class="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-oat text-sm tracking-widest uppercase">
+                        <span class="border border-oat/50 px-4 py-2 rounded backdrop-blur-sm">檢視憑證 ──→</span>
+                    </button>
+                </div>
+                <div class="p-8 flex flex-col flex-grow justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-[10px] tracking-widest text-clay uppercase font-bold">行政院公共工程委員會</span>
+                            <span class="text-xs text-clay">2025 / 03 取得</span>
+                        </div>
+                        <h3 class="font-serif text-xl text-charcoal font-semibold mb-3 group-hover:text-clay transition-colors duration-300">
+                            公共工程品管人員
+                        </h3>
+                        <p class="text-xs text-charcoal/70 leading-relaxed font-light mb-6">
+                            熟稔公共工程施工品質管制系統與查核機制，把關工程高標準之施作品質。
+                        </p>
+                    </div>
+                    <div class="border-t border-[#8C857B]/20 pt-4 flex justify-between items-center text-xs text-clay">
+                        <span>認證字號：QC-1140305</span>
+                        <span class="italic text-[10px]">ENGINEERING</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="certModal" class="fixed inset-0 bg-charcoal/95 backdrop-blur-md z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 px-4">
+        <!-- 點擊背景關閉 -->
+        <div class="absolute inset-0" onclick="closeModal()"></div>
+        <div class="relative max-w-4xl w-full bg-[#FAF8F5] rounded-lg shadow-2xl p-4 md:p-8 z-10 transform scale-95 transition-transform duration-300" id="modalContainer">
+            <button onclick="closeModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-charcoal hover:opacity-60 transition-opacity text-2xl font-light">
+                ✕
+            </button>
+            <h3 id="modalTitle" class="font-serif text-xl md:text-2xl text-charcoal mb-4 pr-10 font-medium">
+                證照名稱
+            </h3>
+            <div class="border-b border-[#8C857B]/20 mb-6"></div>
+            <!-- 證照大圖容器 -->
+            <div class="flex items-center justify-center bg-stone-100 rounded border border-[#8C857B]/20 overflow-hidden max-h-[70vh]">
+                <img id="modalImg" src="" alt="Certificate Copy" class="max-w-full max-h-[60vh] object-contain">
+            </div>
+            <p class="text-[11px] text-clay text-center mt-4">
+                💡 提示：本頁面目前已直接連結您於 GitHub 儲存庫 `1150601-test001` 中上傳的 `001.jpg` 圖片。
+            </p>
+        </div>
+    </div>
+
+    <footer class="border-t border-[#8C857B]/20 py-8 px-6 md:px-12 lg:px-24 bg-oat flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-clay">
+        <p>© 2026 CATHY WU. ALL RIGHTS RESERVED.</p>
+        <p class="font-serif italic">Crafting Order & Aesthetics in Every Space.</p>
+    </footer>
+
+    <script>
+        // GitHub 圖片讀取防呆（容錯機制：若 main 分支讀取失敗，自動嘗試 master 或 raw 參數）
+        function handleImageError(imgElement) {
+            const currentSrc = imgElement.src;
+            if (currentSrc.includes('/main/')) {
+                // 嘗試 master 分支
+                imgElement.src = currentSrc.replace('/main/', '/master/');
+            } else if (currentSrc.includes('/master/')) {
+                // 嘗試 GitHub Pages 直連格式
+                imgElement.src = "https://cathywu0829-svg.github.io/1150601-test001/001.jpg";
+            } else {
+                // 最終備用圖（高質感灰色占位圖）
+                imgElement.src = "https://placehold.co/800x600/E8E4DC/8C857B?text=Certificate+Image";
+                imgElement.onerror = null; // 防止無限迴圈
+            }
+        }
+
+        // 行動端選單切換
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // 分類篩選功能
+        function filterCards(category) {
+            const cards = document.querySelectorAll('.cert-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('active-filter', 'bg-charcoal', 'text-oat', 'border-charcoal');
+                btn.classList.add('border-[#8C857B]/30', 'text-charcoal');
+            });
+
+            const activeBtn = event.currentTarget;
+            activeBtn.classList.add('active-filter', 'bg-charcoal', 'text-oat', 'border-charcoal');
+            activeBtn.classList.remove('border-[#8C857B]/30', 'text-charcoal');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // 開啟憑證 Lightbox
+        function openModal(title, imgSrc) {
+            const modal = document.getElementById('certModal');
+            const modalContainer = document.getElementById('modalContainer');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalImg = document.getElementById('modalImg');
+
+            modalTitle.textContent = title;
+            modalImg.src = imgSrc;
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-95');
+            modalContainer.classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 關閉憑證 Lightbox
+        function closeModal() {
+            const modal = document.getElementById('certModal');
+            const modalContainer = document.getElementById('modalContainer');
+
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
