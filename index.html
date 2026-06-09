@@ -6,7 +6,7 @@
     <title>Cathy Wu 吳佩靜 | 個人精選</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Playfair Display (高雅襯線) & Noto Sans TC (中文黑體) & Cormorant Garamond -->
+    <!-- Google Fonts: Playfair Display & Noto Sans TC & Cormorant Garamond -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <script>
@@ -108,15 +108,35 @@
             <!-- 右側大圖與重疊卡片區 (佔 7 格) -->
             <div class="lg:col-span-7 relative flex flex-col justify-center">
                 
-                <!-- 大主圖 (參考223.jpg的乾淨室內灰牆) -->
+                <!-- 大主圖 - 內含多張照片輪播與淡入淡出效果 -->
                 <div class="relative aspect-[4/3] w-full overflow-hidden bg-stone-300 rounded-sm shadow-md">
-                    <!-- Unsplash 質感極簡空間大圖 -->
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" 
-                         alt="極簡室內空間" 
-                         class="w-full h-full object-cover grayscale-[10%] brightness-95">
+                    
+                    <!-- 第 1 張大圖 (指向 images/hero.jpg，若無則自動以高品質空間圖替代) -->
+                    <img id="slide-0" src="images/hero.jpg" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80';"
+                         alt="極簡室內空間 - 經典" 
+                         class="absolute inset-0 w-full h-full object-cover grayscale-[10%] brightness-95 transition-opacity duration-700 ease-in-out opacity-100 z-10">
+                    
+                    <!-- 第 2 張大圖 (對應實體檔案 555.jpg: 北歐清新植栽客廳) -->
+                    <img id="slide-1" src="images/555.jpg" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80';"
+                         alt="北歐清新植栽客廳" 
+                         class="absolute inset-0 w-full h-full object-cover grayscale-[10%] brightness-95 transition-opacity duration-700 ease-in-out opacity-0 z-10">
+                    
+                    <!-- 第 3 張大圖 (對應實體檔案 666.jpg: 現代大理石紋客廳) -->
+                    <img id="slide-2" src="images/666.jpg" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80';"
+                         alt="現代大理石紋客廳" 
+                         class="absolute inset-0 w-full h-full object-cover grayscale-[10%] brightness-95 transition-opacity duration-700 ease-in-out opacity-0 z-10">
+                    
+                    <!-- 第 4 張大圖 (對應實體檔案 777.jpg: 工業復古紅磚客廳) -->
+                    <img id="slide-3" src="images/777.jpg" 
+                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=1200&q=80';"
+                         alt="工業復古紅磚客廳" 
+                         class="absolute inset-0 w-full h-full object-cover grayscale-[10%] brightness-95 transition-opacity duration-700 ease-in-out opacity-0 z-10">
                     
                     <!-- 圓形旋轉文字章 (EVERYDAY EVERYWHERE) -->
-                    <div class="absolute top-6 right-8 w-24 h-24 hidden md:block select-none pointer-events-none opacity-80">
+                    <div class="absolute top-6 right-8 w-24 h-24 hidden md:block select-none pointer-events-none opacity-80 z-20">
                         <svg viewBox="0 0 100 100" class="w-full h-full animate-[spin_25s_linear_infinite]">
                             <path id="circlePath" fill="none" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"></path>
                             <text class="text-[7.5px] tracking-[0.22em] fill-charcoal-900 font-light uppercase">
@@ -125,18 +145,18 @@
                         </svg>
                     </div>
 
-                    <!-- 圓形懸浮控制鈕裝飾 (呼應設計圖) -->
-                    <div class="absolute bottom-8 left-8 flex space-x-3 hidden md:flex">
-                        <button class="w-10 h-10 rounded-full border border-white bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-                            <span class="text-xs">←</span>
+                    <!-- 圓形懸浮控制鈕 (左右箭頭轉換，支援手機版，拉大觸摸面積) -->
+                    <div class="absolute bottom-8 left-8 flex space-x-3 z-20">
+                        <button id="prev-btn" class="w-12 h-12 rounded-full border border-white bg-white/20 backdrop-blur-md flex items-center justify-center text-charcoal-900 hover:bg-white hover:text-black transition-all active:scale-95 shadow-md" aria-label="上一張">
+                            <span class="text-sm font-bold">←</span>
                         </button>
-                        <button class="w-10 h-10 rounded-full border border-white bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white hover:text-black transition-all">
-                            <span class="text-xs">→</span>
+                        <button id="next-btn" class="w-12 h-12 rounded-full border border-white bg-white/20 backdrop-blur-md flex items-center justify-center text-charcoal-900 hover:bg-white hover:text-black transition-all active:scale-95 shadow-md" aria-label="下一張">
+                            <span class="text-sm font-bold">→</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- 浮動重疊卡片 (參考223.jpg右側白色卡片) -->
+                <!-- 浮動重疊卡片 -->
                 <div class="mt-6 md:mt-0 md:absolute md:right-8 md:-bottom-12 bg-white p-6 md:p-8 max-w-sm rounded-sm shadow-xl border border-greige-100 z-20">
                     <span class="text-[10px] tracking-[0.3em] text-greige-400 font-bold uppercase block mb-2">Featured Project</span>
                     <h3 class="text-lg font-light text-charcoal-900 text-serif tracking-wide mb-3">
@@ -159,13 +179,22 @@
     <section id="about" class="py-24 bg-white border-y border-greige-300">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             <div class="grid md:grid-cols-12 gap-12 items-start">
-                <div class="md:col-span-4">
+                <div class="md:col-span-4 flex flex-col md:flex-col items-center md:items-start text-center md:text-left">
+                    
+                    <!-- 個人大頭照 (指向實體檔案 images/222.jpg) -->
+                    <div class="w-28 h-28 rounded-full overflow-hidden bg-greige-100 border border-greige-300 mb-6 shadow-md">
+                        <img src="images/222.jpg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&fit=crop&q=80';"
+                             alt="吳佩靜 Cathy Wu 個人照" 
+                             class="w-full h-full object-cover">
+                    </div>
+
                     <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">01 / PROFILE</span>
                     <h2 class="text-4xl font-light text-serif text-charcoal-900">吳佩靜 Cathy Wu</h2>
-                    <div class="w-20 h-[1px] bg-charcoal-800 mt-6"></div>
+                    <div class="w-20 h-[1px] bg-charcoal-800 my-6 mx-auto md:mx-0"></div>
                     
                     <!-- 履歷細節側欄 -->
-                    <div class="mt-8 space-y-2 text-xs text-stone-500 font-light">
+                    <div class="space-y-2 text-xs text-stone-500 font-light text-left">
                         <p>Education: 台南女子技術學院 / 室內設計</p>
                         <p>Foundation: 育達商職 / 廣告設計</p>
                         <p>Location: 中壢, 台灣 (Zhongli, TW)</p>
@@ -189,9 +218,25 @@
     <!-- 技能領域 區塊 -->
     <section id="skills" class="py-24 bg-greige-50">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
-            <div class="text-center mb-16">
-                <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">02 / EXPERTISE</span>
-                <h2 class="text-4xl font-light text-serif text-charcoal-900">Core Expertise</h2>
+            
+            <!-- 標題與右上角 CERTIFICATES / 證書 按鈕 -->
+            <div class="flex flex-col sm:flex-row justify-between items-center sm:items-end mb-16 border-b border-greige-300 pb-6">
+                <div class="text-center sm:text-left mb-6 sm:mb-0">
+                    <span class="text-xs tracking-[0.3em] text-greige-400 font-bold block mb-2">02 / EXPERTISE</span>
+                    <h2 class="text-4xl font-light text-serif text-charcoal-900">Core Expertise</h2>
+                </div>
+                <div>
+                    <!-- 
+                      【證書連結說明】
+                      您可以在下方 href="certificates.html" 抽換成您第二頁的實際檔案名稱或外部網址。
+                    -->
+                    <a href="certificates.html" class="inline-flex items-center space-x-2 text-xs tracking-[0.15em] uppercase font-medium border border-charcoal-900 px-5 py-2.5 hover:bg-charcoal-900 hover:text-white transition-all duration-300 rounded-sm">
+                        <span>Certificates / 證書</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -225,7 +270,7 @@
         </div>
     </section>
 
-    <!-- 作品展示區 (精緻畫廊卡片，重疊留白排版) -->
+    <!-- 作品展示區 -->
     <section id="projects" class="py-24 bg-white border-t border-greige-300">
         <div class="max-w-6xl mx-auto px-6 md:px-12">
             
@@ -240,9 +285,9 @@
             <!-- 格線卡片 1 -->
             <div class="grid md:grid-cols-12 gap-8 items-center mb-24">
                 <div class="md:col-span-7 bg-greige-50 p-4 rounded-sm border border-greige-100">
-                    <!-- 作品圖片1 -->
                     <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
-                        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80" 
+                        <img src="images/project1.jpg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80';"
                              alt="空間製圖" 
                              class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
@@ -262,11 +307,10 @@
 
             <!-- 格線卡片 2 -->
             <div class="grid md:grid-cols-12 gap-8 items-center mb-24 md:flex-row-reverse">
-                <!-- 移動端順序調整：讓圖片始終在上方 -->
                 <div class="md:col-span-7 md:order-2 bg-greige-50 p-4 rounded-sm border border-greige-100">
-                    <!-- 作品圖片2 -->
                     <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80" 
+                        <img src="images/project2.jpg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80';"
                              alt="水藝景觀" 
                              class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
@@ -287,9 +331,9 @@
             <!-- 格線卡片 3 -->
             <div class="grid md:grid-cols-12 gap-8 items-center">
                 <div class="md:col-span-7 bg-greige-50 p-4 rounded-sm border border-greige-100">
-                    <!-- 作品圖片3 -->
                     <div class="aspect-[16/10] bg-stone-300 overflow-hidden relative group">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80" 
+                        <img src="images/project3.jpg" 
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80';"
                              alt="財務行政管理" 
                              class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-transparent transition-colors"></div>
@@ -389,6 +433,69 @@
             </p>
         </div>
     </footer>
+
+    <!-- 輪播控制 JavaScript (支援流暢淡入淡出、移動端與桌面端) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0;
+            const totalSlides = 4;
+            
+            const updateSlides = () => {
+                for (let i = 0; i < totalSlides; i++) {
+                    const img = document.getElementById(`slide-${i}`);
+                    if (img) {
+                        if (i === currentSlide) {
+                            // 顯示目前投影片並允許點擊
+                            img.classList.remove('opacity-0', 'pointer-events-none');
+                            img.classList.add('opacity-100');
+                        } else {
+                            // 隱藏其他投影片防止干擾
+                            img.classList.remove('opacity-100');
+                            img.classList.add('opacity-0', 'pointer-events-none');
+                        }
+                    }
+                }
+            };
+            
+            // 綁定上一張按鈕
+            document.getElementById('prev-btn')?.addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlides();
+            });
+            
+            // 綁定下一張按鈕
+            document.getElementById('next-btn')?.addEventListener('click', () => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlides();
+            });
+            
+            // 支援滑動觸控手勢 (Touch Gestures for mobile)
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const carousel = document.getElementById('slide-0').parentElement;
+            
+            carousel?.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            carousel?.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            const handleSwipe = () => {
+                if (touchStartX - touchEndX > 50) {
+                    // 向左滑 -> 下一張
+                    currentSlide = (currentSlide + 1) % totalSlides;
+                    updateSlides();
+                } else if (touchEndX - touchStartX > 50) {
+                    // 向右滑 -> 上一張
+                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                    updateSlides();
+                }
+            };
+        });
+    </script>
 
 </body>
 </html>
